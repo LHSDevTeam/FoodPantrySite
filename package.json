@@ -9,7 +9,7 @@
     "jshint": "^2.11.0"
   },
   "scripts": {
-    "test": "call ./build.bat && jshint ./src/js/out/index.js",
+    "test": "call ./build.bat && call ./test.bat",
     "build": "call ./build.bat"
   },
   "repository": {
