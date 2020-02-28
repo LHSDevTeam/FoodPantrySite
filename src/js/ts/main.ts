@@ -1,3 +1,4 @@
+/* jshint node: true */ //Required for JSHint when using node.js
 import http = require('http');
 import url = require('url');
 import querystring = require('querystring');
