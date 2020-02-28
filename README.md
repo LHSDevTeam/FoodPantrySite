@@ -16,6 +16,8 @@ Plan:
 
 All needed modules can be installed with `npm install`
 
-SCSS and TypeScript can be compiled with `npm run build`
+Build app with `npm run build`
 
-Can be tested with `npm run test`
+Test app with `npm run test`
+
+Run app with `npm run app`
