@@ -1,0 +1,29 @@
+{
+  "name": "foodpantrysite",
+  "version": "1.0.0",
+  "description": "A website that will record the items that users scan, and allow for health professionals to get insights into their eating habits",
+  "main": "main.js",
+  "devDependencies": {
+    "typescript": "^3.8.2",
+    "sass": "^1.26.1",
+    "jshint": "^2.11.0"
+  },
+  "scripts": {
+    "test": "call ./build.bat && call ./test.bat",
+    "build": "call ./build.bat",
+    "app" : "call ./build.bat && node ./src/js/out/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LHSDevTeam/FoodPantrySite.git"
+  },
+  "author": "LHSDevTeam",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/LHSDevTeam/FoodPantrySite/issues"
+  },
+  "homepage": "https://github.com/LHSDevTeam/FoodPantrySite#readme",
+  "dependencies": {
+    "@types/node": "^13.7.6"
+  }
+}
