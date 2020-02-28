@@ -5,14 +5,22 @@ import fs = require('fs');
 
 http.createServer(function (req, res) {
   let pathName = url.parse(req.url).pathname;
-  console.log(pathName);
+
+  // Home page does not need /home directory
   if (pathName == "/") {
-    console.log("Updated");
     pathName = "/home";
   }
 
-  fs.readFile(__dirname + "/../../html" + pathName + "/index.html", function(err, data){
+  // This implementation allows html pages to be requested without .html at the end but does not effect other types
+  if (!pathName.includes(".")) {
+    pathName = pathName.concat("/index.html");
+    pathName = "html".concat(pathName);
+  }
+
+  console.log(pathName);
+  fs.readFile(__dirname + "/../../" + pathName, function(err, data){
     if(err){
+      // Serve 404 page if page is not found
       fs.readFile(__dirname + "/../../html/404.html", function(e,d){
         if (e) {
           res.writeHead(404);
