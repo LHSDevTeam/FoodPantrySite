@@ -1,4 +1,5 @@
 # FoodPantrySite
+[![Build Status](https://travis-ci.com/LHSDevTeam/FoodPantrySite.svg?branch=develop)](https://travis-ci.com/LHSDevTeam/FoodPantrySite)
 
 A website that will record the items that users scan, and allow for health professionals to get insights into their eating habits
 
