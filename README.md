@@ -1,5 +1,5 @@
 # FoodPantrySite
-[![Build Status](https://travis-ci.com/LHSDevTeam/FoodPantrySite.svg?branch=develop)](https://travis-ci.com/LHSDevTeam/FoodPantrySite)
+[![Build Status](https://travis-ci.com/LHSDevTeam/FoodPantrySite.svg?branch=develop)](https://travis-ci.com/LHSDevTeam/FoodPantrySite) [![Trello](https://img.shields.io/static/v1?label=Trello&message=FoodPantrySite&color=blue&logo=trello)](https://trello.com/b/VSWcyiPr/foodpantrysite)
 
 A website that will record the items that users scan, and allow for health professionals to get insights into their eating habits
 
