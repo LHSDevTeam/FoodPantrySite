@@ -2,13 +2,16 @@
 /// Styles that will remain consistant through out the website
 /// Colors and fonts are from John Hopkins website
 $font-family: "Helvetica";
-$color-primary: #0B2972;
-$color-secondary: #FFFFFF;
-$background-color-primary: #FFFFFF;
-$background-color-secondary: #03296D;
+$blue1: #0B2972;
+$blue2: #03296D;
+$white: #FFFFFF;
+$yellow: #F9C506;
+
+@import "./navbar";
 
 body {
     font-family: $font-family;
-    color: $color-primary;
-    background-color: $background-color-primary;
+    color: $blue1;
+    background-color: $white;
+    padding: 0;
 }
