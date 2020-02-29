@@ -1,4 +1,14 @@
+/// Global variables
+/// Styles that will remain consistant through out the website
+/// Colors and fonts are from John Hopkins website
+$font-family: "Helvetica";
+$color-primary: #0B2972;
+$color-secondary: #FFFFFF;
+$background-color-primary: #FFFFFF;
+$background-color-secondary: #03296D;
+
 body {
-    font-family: "Arial";
-    color: #222222;
+    font-family: $font-family;
+    color: $color-primary;
+    background-color: $background-color-primary;
 }
