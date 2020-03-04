@@ -1,27 +1,28 @@
 /// Navigation Bar
 /// Should be displayed on all pages, except scanner and check out
-ul[id="navbar"] {
-    position: absolute;
-    background-color: $blue2;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    width: 100%;
-    left: 0;
-    top: 0;
-    li {
-        float: left;
-        a {
-            display: block;
-            color: $white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            &:hover {
-                color: $yellow;
+div[id="navbar"] {
+    ul {
+        position: relative;
+        background-color: $blue2;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        left: 0;
+        top: 0;
+        li {
+            float: left;
+            a {
+                display: block;
+                color: $white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                &:hover {
+                    color: $yellow;
+                }
             }
         }
     }
 }
-
