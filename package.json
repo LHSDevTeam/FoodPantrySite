@@ -11,7 +11,7 @@
   "scripts": {
     "test": "call ./build.bat && call ./test.bat",
     "build": "call ./build.bat",
-    "app" : "call ./build.bat && node ./src/js/out/main.js"
+    "app": "call ./build.bat && node ./src/js/out/main.js"
   },
   "repository": {
     "type": "git",
