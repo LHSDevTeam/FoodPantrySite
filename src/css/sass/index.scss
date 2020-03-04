@@ -1,4 +1,17 @@
+/// Global variables
+/// Styles that will remain consistant through out the website
+/// Colors and fonts are from John Hopkins website
+$font-family: "Helvetica";
+$blue1: #0B2972;
+$blue2: #03296D;
+$white: #FFFFFF;
+$yellow: #F9C506;
+
+@import "./navbar";
+
 body {
-    font-family: "Arial";
-    color: #222222;
+    font-family: $font-family;
+    color: $blue1;
+    background-color: $white;
+    padding: 0;
 }

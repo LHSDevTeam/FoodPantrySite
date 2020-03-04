@@ -1,5 +1,5 @@
 # FoodPantrySite
-[![Gitter](https://badges.gitter.im/LHSDevTeam/community.svg)](https://gitter.im/LHSDevTeam/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Build Status](https://travis-ci.com/LHSDevTeam/FoodPantrySite.svg?branch=develop)](https://travis-ci.com/LHSDevTeam/FoodPantrySite) [![Trello](https://img.shields.io/static/v1?label=trello&message=FoodPantrySite&color=blue&logo=trello)](https://trello.com/b/VSWcyiPr/foodpantrysite)
+[![Gitter](https://badges.gitter.im/LHSDevTeam/FoodPantrySite.svg)](https://gitter.im/LHSDevTeam/FoodPantrySite?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Build Status](https://travis-ci.com/LHSDevTeam/FoodPantrySite.svg?branch=develop)](https://travis-ci.com/LHSDevTeam/FoodPantrySite) [![Trello](https://img.shields.io/static/v1?label=trello&message=FoodPantrySite&color=blue&logo=trello)](https://trello.com/b/VSWcyiPr/foodpantrysite)
 
 A website that will record the items that users scan, and allow for health professionals to get insights into their eating habits
 
