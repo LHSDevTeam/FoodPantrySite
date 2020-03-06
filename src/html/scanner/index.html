@@ -3,13 +3,46 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../../css/out/index.css">
-      <!--  <link rel="script" type ="text/script" href = "js/ts/scanner.ts"> -->
+       <link rel="script" type ="text/script" href = "js/out/scanner.js"> 
         <title>John Hopkins Food Pantry - Scanner</title>
     </head>
 
     <body>
         <h1>Scanner</h1>
-        <input type="file" accept="image/*" capture="camera" />
+        <video autoplay width = "1920" height = "1080"></video>
+        <input type="button" id="stopbt" value="stop"/>
+        <script type="text/javascript">
+        window.URL = window.URL||window.webkitURL;
+        navigator.getUserMedia = 
+            navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia;
+            var video = document.querySelector('video');
+            var cameraStream = '';
+            if(navigator.getUserMedia)
+            {
+                navigator.getUserMedia(
+                    {
+                        audio : false, video:true
+                    },
+                    function(stream)
+                    {
+                        cameraStream = stream;
+                        video.src = window.URL.createObjectURL(stream);
+
+                    },
+                    function()
+                    {
+                        document.writeln("WTF bro.....");
+                    }
+                );
+            }
+            else{
+                document.writeln("video capture not supported.");
+            }
+        </script>
+       <!-- <input type="file" accept="image/*" capture="camera" />-->
        <!-- <input type="file" accept="video/*;capture=camcorder">-->
        <!-- <device type="media" onchange="update(this.data)"></device>-->
     </body>
