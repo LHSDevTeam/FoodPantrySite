@@ -3,7 +3,7 @@ import url = require('url');
 import querystring = require('querystring');
 import fs = require('fs');
 
-http.createServer(function (req, res) {
+this.server = http.createServer(function (req, res) {
   let pathName = url.parse(req.url).pathname;
 
   // Home page does not need /home directory
@@ -38,5 +38,10 @@ http.createServer(function (req, res) {
       res.end();
     }
   });
-}).listen(1337, '127.0.0.1');
+});
+this.server.listen(1337, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:1337/');
+
+exports.close = function(callback) {
+  this.server.close(callback);
+}

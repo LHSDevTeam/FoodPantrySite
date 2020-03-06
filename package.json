@@ -4,9 +4,12 @@
   "description": "A website that will record the items that users scan, and allow for health professionals to get insights into their eating habits",
   "main": "main.js",
   "devDependencies": {
-    "typescript": "^3.8.2",
+    "chai": "^4.2.0",
+    "jshint": "^2.11.0",
+    "mocha": "^7.1.0",
+    "request": "^2.88.2",
     "sass": "^1.26.1",
-    "jshint": "^2.11.0"
+    "typescript": "^3.8.2"
   },
   "scripts": {
     "test": "call ./build.bat && call ./test.bat",

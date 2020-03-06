@@ -1,4 +1,8 @@
 {
+    "compilerOptions" : {
+        "module": "commonjs",
+        "removeComments": true
+    },
     "include": [
         "src/js/ts/*"
     ]
