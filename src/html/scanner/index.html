@@ -14,10 +14,10 @@
         <script type="text/javascript">
         window.URL = window.URL||window.webkitURL;
         navigator.getUserMedia = 
-            navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
+            navigator.getUserMedia; //||
+            /*navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia;
+            navigator.msGetUserMedia;*/
             var video = document.querySelector('video');
             var cameraStream = '';
             if(navigator.getUserMedia)
