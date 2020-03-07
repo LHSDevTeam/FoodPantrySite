@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/LHSDevTeam/FoodPantrySite#readme",
   "dependencies": {
-    "@types/node": "^13.7.6"
+    "@types/mime": "^2.0.1",
+    "@types/node": "^13.7.6",
+    "mime": "^2.4.4"
   }
 }

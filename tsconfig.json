@@ -1,9 +1,10 @@
 {
     "compilerOptions" : {
         "module": "commonjs",
-        "removeComments": true
+        "removeComments": true,
+        "outDir": "./src/js/out"
     },
     "include": [
-        "src/js/ts/*"
+        "src/js/ts/main.ts"
     ]
 }

@@ -2,6 +2,7 @@ import http = require('http');
 import url = require('url');
 import querystring = require('querystring');
 import fs = require('fs');
+import mime = require('mime');
 
 this.server = http.createServer(function (req, res) {
   let pathName = url.parse(req.url).pathname;
@@ -33,6 +34,7 @@ this.server = http.createServer(function (req, res) {
         }
       });      
     } else {
+      res.setHeader("Content-Type", mime.getType(pathName));
       res.writeHead(200);
       res.write(data);
       res.end();

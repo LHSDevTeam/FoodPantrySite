@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "outDir": "./src/js/out",
+      "target": "es6",
+      "module": "es6",
+      "moduleResolution": "node",
+      "lib": ["es2016", "dom", "es6"]
+    },
+    "include": [
+      "src/js/ts/*"
+    ],
+    "exclude": [
+        "src/js/ts/main.ts"
+    ]
+  }
