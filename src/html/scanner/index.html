@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../../css/out/index.css">
        <link rel="script" type ="text/script" href = "js/out/scanner.js"> 
         <title>John Hopkins Food Pantry - Scanner</title>
@@ -14,10 +15,10 @@
         <script type="text/javascript">
         window.URL = window.URL||window.webkitURL;
         navigator.getUserMedia = 
-            navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
+            navigator.getUserMedia; //||
+            /*navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia;
+            navigator.msGetUserMedia;*/
             var video = document.querySelector('video');
             var cameraStream = '';
             if(navigator.getUserMedia)
