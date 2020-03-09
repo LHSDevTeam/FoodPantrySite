@@ -10,15 +10,21 @@ var history = new Chart("history-chart", {
         datasets: [{
             label: "Grains",
             data: [0.5,0.4,0.3,0.6,0.8,0.2,0.2,0.1,0.3,0.4,0.6,0.2],
-            backgroundColor: "#FF2222",
-            borderColor: "#FF2222",
+            backgroundColor: "#da7b1c",
+            borderColor: "#da7b1c",
             fill: false
         }, {
             label: "Protein",
-            data: []
+            data: [0.2,0.4,0.6,0.3,0.7,0.4,0.7,0.8,0.0,0.2,0.6,0.5],
+            backgroundColor: "#6b4c9a",
+            borderColor: "#6b4c9a",
+            fill: false
         }, {
             label: "Dairy",
-            data: []
+            data: [0.7,0.3,0.4,0.5,0.6,0.1,0.2,0.8,0.9,0.2,0.3,0.6],
+            backgroundColor: "#3969b1",
+            borderColor: "#3969b1",
+            fill: false
         }, {
             label: "Fruit",
             data: []
@@ -28,6 +34,13 @@ var history = new Chart("history-chart", {
         }]
     },
     options: {
-
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    suggestedMax: 1
+                }
+            }]
+        }
     }
 });
