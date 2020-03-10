@@ -54,6 +54,9 @@ var history = new Chart("history-chart", {
                 },
                 stacked: true
             }]
+        },
+        tooltips: {
+            mode: "x"
         }
     }
 });
