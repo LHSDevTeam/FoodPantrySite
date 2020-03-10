@@ -1,15 +1,12 @@
-const constriants = {video: true};
-function update(stream)
-{
-    document.querySelector('video').src = stream.url;
+document.getElementById('stopbt').addEventListener("click",function(e) {
+    console.log("Button has been pressed.");
+});
+let video : HTMLVideoElement = document.getElementById("video") as HTMLVideoElement;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true}).then(function (stream) {
+        video.srcObject = stream;
+        video.play();
+    }).catch(function (error) {
+      console.error(error);
+    });
 }
-function hasGetUserMedia() {
-    return !!(navigator.mediaDevices &&
-      navigator.mediaDevices.getUserMedia);
-  }
-  
-  if (hasGetUserMedia()) {
-    // Good to go!
-  } else {
-    alert('getUserMedia() is not supported by your browser');
-  }
