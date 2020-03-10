@@ -1,3 +1,6 @@
+document.getElementById('stopbt').addEventListener("click",function(e) {
+    console.log("Button has been pressed.");
+});
 let video : HTMLVideoElement = document.getElementById("video") as HTMLVideoElement;
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true}).then(function (stream) {
