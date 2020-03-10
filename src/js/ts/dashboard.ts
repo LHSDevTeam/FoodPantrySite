@@ -41,6 +41,11 @@ var history = new Chart("history-chart", {
         }]
     },
     options: {
+        legend: {
+            labels: {
+                boxWidth: 10
+            }
+        },
         scales: {
             yAxes: [{
                 ticks: {

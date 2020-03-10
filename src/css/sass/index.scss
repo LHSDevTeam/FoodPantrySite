@@ -8,6 +8,7 @@ $white: #FFFFFF;
 $yellow: #F9C506;
 
 @import "./navbar";
+@import "./button";
 
 body {
     font-family: $font-family;
@@ -29,4 +30,11 @@ body {
 
 .center {
     text-align: center;
+}
+
+.block {
+    background-color: #c0c0c0;
+    padding: 16px 31px;
+    color: $white;
+    border-radius: 10px;
 }
