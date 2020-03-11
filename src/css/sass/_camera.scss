@@ -8,14 +8,18 @@
 .camera-but {
     position: fixed;
     display: inline-block;
-    bottom: 15px;
-    left: 45%;
-    width: 10%;
+    bottom:20px;
+    left: (50% - 7.5%);
+    width: 15%;
     height: 0;
-    padding: 5% 0;
+    padding: 7.5% 0;
     border: 2px solid rgba(255, 255, 255, 0.5);
     background-clip: padding-box;
     background-color: $white;
     border-radius: 100%;
     outline: none;
+    &:active {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: 3px solid $white;
+    }
 }
