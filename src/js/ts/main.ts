@@ -34,6 +34,7 @@ this.server = https.createServer(options, function (req, res) {
           res.write('Page Not Found' + JSON.stringify(err));
           res.end();
         } else {
+          res.setHeader("Content-Type", mime.getType(__dirname + "/../../html/404.html"));
           res.writeHead(404);
           res.write(d);
           res.end();
