@@ -28,7 +28,7 @@ this.server = https.createServer(options, function (req, res) {
   fs.readFile(__dirname + "/../.." + pathName, function(err, data){
     if(err){
       // Serve 404 page if page is not found
-      fs.readFile(__dirname + "/../../html/404.html", function(e,d){
+      fs.readFile(__dirname + "/../../html/404/index.html", function(e,d){
         if (e) {
           res.writeHead(404);
           res.write('Page Not Found' + JSON.stringify(err));
