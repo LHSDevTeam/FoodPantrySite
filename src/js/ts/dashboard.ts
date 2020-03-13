@@ -1,6 +1,7 @@
-import { toggleNavbar } from "./_navbar.js";
-declare let moment: any;
-let Chart = window.Chart;
+export{}
+let toggleNavbar = require('./_navbar.ts').toggleNavbar;
+let Chart = require('chart.js');
+let moment = require('moment');
 
 document.getElementById("navbar-toggle").addEventListener("click", toggleNavbar);
 
