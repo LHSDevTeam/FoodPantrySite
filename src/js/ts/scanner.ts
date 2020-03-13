@@ -1,4 +1,6 @@
-let jsQR = require('jsqr');
+let jsQR: (arg0: Uint8ClampedArray, arg1: number, arg2: number) => any = require('jsqr');
+
+let items : {name : string, type : string, category : string}[] = [];
 
 document.getElementById('stopbt').addEventListener("click",function(e) {
     let photo : HTMLCanvasElement = document.createElement("canvas");
@@ -7,7 +9,9 @@ document.getElementById('stopbt').addEventListener("click",function(e) {
     let code = jsQR(ctx.getImageData(0,0,photo.width, photo.height).data, photo.width, photo.height);
 
     if (code) {
-      console.log(code);
+      console.log(code.data);
+      items.push(JSON.parse(code.data));
+      console.log(items);
     }
 });
 
