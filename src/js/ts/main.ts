@@ -10,7 +10,7 @@ let options = {
   cert: fs.readFileSync('tls.crt')
 };
 
-this.server = https.createServer(options, function (req, res) {
+let server = https.createServer(options, function (req, res) {
   let pathName = url.parse(req.url).pathname;
 
   // Home page does not need /home directory
@@ -48,9 +48,9 @@ this.server = https.createServer(options, function (req, res) {
     }
   });
 });
-this.server.listen(1337, '127.0.0.1');
+server.listen(1337, '127.0.0.1');
 console.log('Server running at https://127.0.0.1:1337/');
 
 exports.close = function(callback: any) {
-  this.server.close(callback);
+  server.close(callback);
 }
