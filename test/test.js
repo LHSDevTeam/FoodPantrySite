@@ -6,7 +6,6 @@ describe('Server Connections', function() {
     describe('Web Pages', function() {
         it("Home Page", function(done) {
             request("http://127.0.0.1:1337/", function(error, response, body) {
-                console.log(response);
                 expect(response.statusCode).to.equal(200);
                 done();
             });
