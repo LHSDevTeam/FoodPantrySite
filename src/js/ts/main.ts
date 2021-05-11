@@ -1,16 +1,10 @@
-import https = require('https');
+import http = require('http');
 import url = require('url');
 import querystring = require('querystring');
 import fs = require('fs');
 import mime = require('mime');
 
-// Load Certificates (This will change when uploaded to the server)
-let options = {
-  key: fs.readFileSync('tls.key'),
-  cert: fs.readFileSync('tls.crt')
-};
-
-let server = https.createServer(options, function (req, res) {
+let server = http.createServer(function (req, res) {
   let pathName = url.parse(req.url).pathname;
 
   // Home page does not need /home directory
