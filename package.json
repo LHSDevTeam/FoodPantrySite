@@ -14,9 +14,9 @@
     "typescript": "^3.9.9"
   },
   "scripts": {
-    "test": "./build.bat && ./test.bat",
-    "build": "./build.bat",
-    "app": "./build.bat && node ./src/js/out/main.js"
+    "test": "call ./build.bat && call ./test.bat",
+    "build": "call ./build.bat",
+    "app": "call ./build.bat && node ./src/js/out/main.js"
   },
   "repository": {
     "type": "git",
