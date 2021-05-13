@@ -4,7 +4,7 @@ import querystring = require('querystring');
 import fs = require('fs');
 import mime = require('mime');
 
-this.server = http.createServer(function (req, res) {
+exports.server = http.createServer(function (req, res) {
   let pathName = url.parse(req.url).pathname;
 
   // Home page does not need /home directory
@@ -42,9 +42,9 @@ this.server = http.createServer(function (req, res) {
     }
   });
 });
-this.server.listen(1337, '127.0.0.1');
+exports.server.listen(1337, '127.0.0.1');
 console.log('Server running at https://127.0.0.1:1337/');
 
 exports.close = function(callback: any) {
-  this.server.close(callback);
+  exports.server.close(callback);
 }
