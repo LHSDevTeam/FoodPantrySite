@@ -4,6 +4,21 @@ import mime = require('mime');
 import mongoose = require("mongoose");
 import bcrypt = require('bcrypt');
 
+var Schema = mongoose.Schema;
+
+var userSchema = new Schema({
+  username: String,
+  password: String
+});
+
+userSchema.methods.generateHash = function(password) {
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(password, salt, function(err, hash) {
+      return hash;
+    });
+  });
+}
+
 // mongodb client, used for accessing the database
 async function run_mongodb_client() {
   let secrets = require("./secrets.json");
