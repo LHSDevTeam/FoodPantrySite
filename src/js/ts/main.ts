@@ -1,32 +1,14 @@
 import http = require('http');
-import url = require('url');
-import querystring = require('querystring');
 import fs = require('fs');
 import mime = require('mime');
-const { MongoClient } = require("mongodb");
+import mongoose = require("mongoose");
+import bcrypt = require('bcrypt');
 
-
-const uri =
-  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&writeConcern=majority";
-
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
+// mongodb client, used for accessing the database
 async function run_mongodb_client() {
-  try {
-    await client.connect();
-    const database = client.db('sample_mflix');
-    const movies = database.collection('movies');
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { title: 'Back to the Future' };
-    const movie = await movies.findOne(query);
-    console.log(movie);
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
+  let secrets = require("./secrets.json");
+  mongoose.connect("mongodb+srv://" + secrets.username + ":" + secrets.password +"@web1.c3ofa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+
 }
 
 exports.server = http.createServer(function (req, res) {
@@ -74,5 +56,3 @@ console.log('Server running at https://127.0.0.1:1337/');
 exports.close = function(callback: any) {
   exports.server.close(callback);
 }
-
-run_mongodb_client().catch(console.dir);
