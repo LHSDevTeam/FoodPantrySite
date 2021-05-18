@@ -3,26 +3,40 @@ import fs = require('fs');
 import mime = require('mime');
 import mongoose = require("mongoose");
 import bcrypt = require('bcrypt');
+import jsonBody = require('body/json');
 
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+const userSchema = new Schema({
   username: String,
   password: String
 });
 
+module.exports = userSchema;
+
+const saltRounds = 10;
+
 userSchema.methods.generateHash = function(password) {
-  bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(password, salt, function(err, hash) {
-      return hash;
-    });
+  bcrypt.hash(password, saltRounds, function(err, hash) {
+    if (err) {
+      console.log(err);
+      return err;
+    }
+
   });
 }
+
+
 
 // mongodb client, used for accessing the database
 async function run_mongodb_client() {
   let secrets = require("./secrets.json");
-  mongoose.connect("mongodb+srv://" + secrets.username + ":" + secrets.password +"@web1.c3ofa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+  try {
+      await mongoose.connect("mongodb+srv://" + secrets.username + ":" + secrets.password +"@web1.c3ofa.mongodb.net/jhfp?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
 
 }
 
@@ -30,6 +44,23 @@ exports.server = http.createServer(function (req, res) {
   const baseURL = "http://" + req.headers.host + "/";
   let pathName = new URL(req.url, baseURL).pathname;
 
+  if (req.method == "GET") {
+    handleGET(pathName, req, res);
+  } else if (req.method == "POST") {
+    handlePOST(pathName, req, res);
+  } else if (req.method == "DELETE") {
+    handleDELETE(pathName, req, res);
+  } else if (req.method == "PUT") {
+    handlePUT(pathName, req, res);
+  } else {
+    res.setHeader("Content-Type", "application/json");
+    res.writeHead(404);
+    res.write('{"error": "Method is not of GET, POST, DELETE, or PUT"}');
+    res.end();
+  }
+});
+
+function handleGET(pathName, req, res) {
   // Home page does not need /home directory
   if (pathName == "/") {
     pathName = "/home";
@@ -40,7 +71,7 @@ exports.server = http.createServer(function (req, res) {
     pathName = pathName.concat("/index.html");
     pathName = "/html".concat(pathName);
   }
-
+  
   console.log(pathName);
   fs.readFile(__dirname + "/../.." + pathName, function(err, data){
     if(err){
@@ -64,9 +95,39 @@ exports.server = http.createServer(function (req, res) {
       res.end();
     }
   });
-});
+}
+
+function handlePOST(pathName, req, res) {
+  if (pathName == "/signup") {
+    signUp(req, function (err, body) {
+      res.setHeader("Content-Type", "application/json");
+      if (err) {
+        res.write(err);
+      }
+      else {
+        res.write(body);
+      }
+      res.end();
+    });
+  }
+}
+
+function handleDELETE(pathName, req, res) {
+
+}
+
+function handlePUT(pathName, req, res) {
+
+}
+
+function signUp(req, callback) {
+  jsonBody(req, function (err, body) {
+    callback(err, data);
+  });  
+}
+
 exports.server.listen(1337, '127.0.0.1');
-console.log('Server running at https://127.0.0.1:1337/');
+console.log('Server running at http://127.0.0.1:1337/');
 
 exports.close = function(callback: any) {
   exports.server.close(callback);
