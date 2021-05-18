@@ -99,15 +99,14 @@ function handleGET(pathName, req, res) {
 
 function handlePOST(pathName, req, res) {
   if (pathName == "/signup") {
-    signUp(req, function (err, body) {
-      res.setHeader("Content-Type", "application/json");
+    jsonBody(req, res, function (err, body) {
       if (err) {
-        res.write(err);
+        res.statusCode = 500;
+        return res.end();
       }
-      else {
-        res.write(body);
-      }
-      res.end();
+      res.setHeader("content-type", "application/json");
+      
+      res.end(JSON.stringify(body));
     });
   }
 }
@@ -120,10 +119,12 @@ function handlePUT(pathName, req, res) {
 
 }
 
-function signUp(req, callback) {
-  jsonBody(req, function (err, body) {
-    callback(err, data);
-  });  
+function userExists() {
+
+}
+
+function signUp(body) {
+  
 }
 
 exports.server.listen(1337, '127.0.0.1');
