@@ -142,8 +142,6 @@ const UserSchema = new Schema({
   hash: String
 });
 
-
-
 UserSchema.pre<IUser>("save", function (next) {
   const user = this;
 
