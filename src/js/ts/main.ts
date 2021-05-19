@@ -4,40 +4,22 @@ import mime = require('mime');
 import mongoose = require("mongoose");
 import bcrypt = require('bcrypt');
 import jsonBody = require('body/json');
+import Joi = require('joi');
 
 var Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  username: String,
-  password: String
-});
-
-module.exports = userSchema;
-
-const saltRounds = 10;
-
-userSchema.methods.generateHash = function(password) {
-  bcrypt.hash(password, saltRounds, function(err, hash) {
-    if (err) {
-      console.log(err);
-      return err;
-    }
-
-  });
-}
-
-
-
 // mongodb client, used for accessing the database
-async function run_mongodb_client() {
-  let secrets = require("./secrets.json");
-  try {
-      await mongoose.connect("mongodb+srv://" + secrets.username + ":" + secrets.password +"@web1.c3ofa.mongodb.net/jhfp?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
-  } catch (err) {
-    console.log(err);
-    return err;
-  }
-
+async function runMongodbClient() {
+  const secretsFile = fs.readFileSync("./secrets.json");
+  const secrets = JSON.parse(secretsFile.toString());
+  mongoose.connect("mongodb+srv://" + secrets.username + ":" + secrets.password +"@web1.c3ofa.mongodb.net/jhfp?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true}).then(
+    () => {
+      console.log("Connected to MongoDB Database")
+    },
+    err => {
+      console.log(err);
+    }
+  );
 }
 
 exports.server = http.createServer(function (req, res) {
@@ -72,7 +54,6 @@ function handleGET(pathName, req, res) {
     pathName = "/html".concat(pathName);
   }
   
-  console.log(pathName);
   fs.readFile(__dirname + "/../.." + pathName, function(err, data){
     if(err){
       // Serve 404 page if page is not found
@@ -98,16 +79,28 @@ function handleGET(pathName, req, res) {
 }
 
 function handlePOST(pathName, req, res) {
-  if (pathName == "/signup") {
-    jsonBody(req, res, function (err, body) {
-      if (err) {
-        res.statusCode = 500;
-        return res.end();
+  jsonBody(req, res, function (err, body) {
+    if (err) {
+      res.statusCode = 500;
+      res.end();
+    } else {
+      if (pathName == "/signup") {
+        POSTcallback(res, signUp(body));
       }
-      res.setHeader("content-type", "application/json");
       
-      res.end(JSON.stringify(body));
-    });
+    }      
+  });
+}
+
+function POSTcallback(res, response) {
+  if (response.error) {
+    res.statusCode = 400;
+    res.write(JSON.stringify(response));
+    res.end();
+  } else {
+    res.statusCode = 200;
+    res.write(JSON.stringify(response));
+    res.end();
   }
 }
 
@@ -119,15 +112,54 @@ function handlePUT(pathName, req, res) {
 
 }
 
+// checks if a user exists, needed for checking if a user name is valid when signing up
 function userExists() {
 
 }
 
+const UserValidationSchema = Joi.object({
+  fname: Joi.string().max(36).pattern(/[a-zA-Z]/).required(),
+  lname: Joi.string().max(36).pattern(/[a-zA-Z]/).required(),
+  email: Joi.string().max(254).email().required(),
+});
+
+const UserSchema = new Schema({
+  _id: Schema.Types.ObjectId,
+  username: String,
+  fname: String,
+  lname: String,
+  email: String
+});
+
+var User = mongoose.model('Users', UserSchema);
+
+// Firsts validates sign up info and then creates a new account
 function signUp(body) {
-  
+  let validation = UserValidationSchema.validate(body);
+  if (validation.error) {
+    return validation;
+  } else {
+    var newUser = new User({
+      _id: new mongoose.Types.ObjectId(),
+      username: validation.value.fname.toLowerCase() + validation.value.lname.toLowerCase(),
+      fname: validation.value.fname,
+      lname: validation.value.lname,
+      email: validation.value.email
+    });
+
+    newUser.save(function (error) {
+      if (error) {
+        let err = { error: error };
+        return err;
+      }
+    });
+
+    return newUser;
+  }
 }
 
 exports.server.listen(1337, '127.0.0.1');
+runMongodbClient();
 console.log('Server running at http://127.0.0.1:1337/');
 
 exports.close = function(callback: any) {
