@@ -126,19 +126,17 @@ const UserValidationSchema = Joi.object({
 
 export interface IUser extends mongoose.Document {
   _id: mongoose.Schema.Types.ObjectId,
-  username: String,
+  email: String,
   fname: String,
   lname: String,
-  email: String,
   hash: String
 }
 
 const UserSchema = new Schema({
   _id: Schema.Types.ObjectId,
-  username: String,
+  email: String,
   fname: String,
   lname: String,
-  email: String,
   hash: String
 });
 
@@ -184,10 +182,9 @@ function signUp(body, res, callback) {
       if (count == 0) {
         var newUser = new User({
           _id: new mongoose.Types.ObjectId(),
-          username: validation.value.fname.toLowerCase() + validation.value.lname.toLowerCase(),
+          email: validation.value.email,
           fname: validation.value.fname,
           lname: validation.value.lname,
-          email: validation.value.email,
           hash: validation.value.password
         });
 

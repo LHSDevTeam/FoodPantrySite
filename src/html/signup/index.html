@@ -7,10 +7,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../../css/out/default.css">
         <link rel="stylesheet" type="text/css" href="../../css/out/login.css">
-        <title>John Hopkins Food Pantry - Login</title>
+        <title>John Hopkins Food Pantry - Sign Up</title>
     </head>
 
-    <script type="module" src="../js/out/login.js"></script>
+    <script type="module" src="../js/out/signup.js"></script>
 
     <body>
         <div class="bg">
@@ -21,10 +21,12 @@
                 </div>
                 <br>
                 <div class="block">
-                    <h1>Login</h1>
-                    <div id="login-form">
+                    <h1>Sign Up</h1>
+                    <div id="signup-form">
                         <form class="center">
-                            <input class="text-input" type="email" placeholder="E-Mail" id="username-field" pattern="[a-zA-Z]+" required/><br><br>
+                            <input class="text-input" type="text" placeholder="First Name" id="fname-field" pattern="[a-zA-Z]+" required/><br><br>
+                            <input class="text-input" type="text" placeholder="Last Name" id="lname-field" pattern="[a-zA-Z]+" required/><br><br>
+                            <input class="text-input" type="email" placeholder="E-Mail" id="email-field" required/><br><br>
                             <input class="text-input" type="password" placeholder="Password" id="password-field" required/><br><br>
                             <input class="thin-button" type="submit" id="submit-btn" value="Submit"/>
                         </form>

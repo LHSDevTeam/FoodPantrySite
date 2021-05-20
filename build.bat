@@ -18,4 +18,10 @@ ECHO √
 ECHO | SET /p=" Scanner "
 CALL browserify ./src/js/ts/scanner.ts -p [ tsify -p ./tsconfig.browser.json ] > ./src/js/out/scanner.js
 ECHO √
+ECHO | SET /p=" Login "
+CALL browserify ./src/js/ts/login.ts -p [ tsify -p ./tsconfig.browser.json ] > ./src/js/out/login.js
+ECHO √
+ECHO | SET /p=" Sign Up "
+CALL browserify ./src/js/ts/signup.ts -p [ tsify -p ./tsconfig.browser.json ] > ./src/js/out/signup.js
+ECHO √
 ECHO Build Complete
