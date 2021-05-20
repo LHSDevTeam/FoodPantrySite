@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../../css/out/default.css">
         <link rel="stylesheet" type="text/css" href="../../css/out/login.css">
         <title>John Hopkins Food Pantry - Login</title>
@@ -12,11 +14,18 @@
         <div class="bg">
             <div class="wrapper">
                 <br>
+                <div class="clear-block">
+                    <img src="../../img/hopkins-logo.svg"/>
+                </div>
+                <br>
                 <div class="block">
                     <h1>Login</h1>
                     <div id="login-form">
-                        <input type="text" placeholder="Username"/><br><br>
-                        <input type="password" placeholder="Password"/>
+                        <div class="center">
+                            <input class="text-input" type="text" placeholder="Username"/><br><br>
+                            <input class="text-input" type="password" placeholder="Password"/><br><br>
+                            <button class="thin-button" type="submit">Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
