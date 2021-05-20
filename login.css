@@ -1,0 +1,143 @@
+
+html { 
+    font-family: 'Noto Sans', sans-serif;
+    background: url('../login/img/bg_blur_blue.png') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+body{
+    margin-left:auto;
+    margin-right:auto;
+}
+.loginBox {
+    margin: auto;
+    width: 10%;
+    padding: 10px;
+    position:relative;
+    left:-50px;
+    top: 40%;
+    
+  }
+.iconBox{
+    height: 12%;
+    width: 40%;
+    background-color: #0054cf;
+    border-radius:7px;
+    z-index: -1;
+}
+.buttonBox{
+    height: 10%;
+    width: 30%px;
+    background-color: white;
+    border-radius:7px;
+    z-index: -1;
+    opacity: 0.5;
+}
+#buttonBg {
+    position:absolute;
+    top:19%;
+    left:25%;
+    height:32%;
+    width:50%;
+    z-index:-1;
+
+}
+
+  .rectangle {
+    height: 50px;
+    width: 100px;
+    background-color: #0054cf;
+    border-radius:7px;
+  }
+  .signin{
+      padding: 10%;
+      margin: 10px 0;
+      opacity: 1;
+      border-radius:7px;
+      text-align:center;
+      border: none;
+      color:#000;
+      letter-spacing: 2.5px;
+  }
+  
+  .submit{
+    max-height: 10%;
+    border-radius: 7px;
+    color: gray;
+    border: none;
+    text-align:center;
+  }
+  ::placeholder {
+    color: #000;
+    opacity: 0.5; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #000;
+   opacity: 0.5;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+   color: #000;
+   opacity: 0.5;
+  }
+  .button {
+    width: 40%;
+    height: 8%;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: .44vw;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    }
+    .button:hover {
+        background-color: #0054cf;
+        box-shadow: 0px 15px 20px rgba(0, 64, 184, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+      }
+  .parent {
+    position: relative;
+  }
+  
+  .child {
+    position: absolute;
+    top: 0;
+  }
+  
+  .child1 {
+    left: -2vw;
+    max-height:8.6%;
+  }
+  
+  .child2 {
+    left: 10px;
+  }
+
+  
+  .child3 {
+    left: -2vw;
+    top:1px;
+  }
+  
+  .child4 {
+    left: 10px;
+  }
+  .logo {
+      max-height: 40%;
+      max-width: 40%;
+      position:relative;
+      top: 7.5vw;
+      left: calc(25% + 20px);
+     
+  }
