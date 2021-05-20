@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1"
+    />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="vid_container">
+        <a id="btn-scan-qr">
+          <a/>
+    
+          <canvas hidden="" id="qr-canvas"></canvas>
+    
+          <div id="qr-result" hidden="">
+            <b>Data:</b> <span id="outputData"></span>
+      </div>
+      
+      </div>
+    </div>
+      <div id="gui_controls">
+        
+        <button id="takePhotoButton" name="take Photo" type="button"></button>
+        <button
+          id="toggleFullScreenButton"
+          name="toggle FullScreen"
+          type="button"
+          aria-pressed="false"
+        ></button>
+      </div>
+    </div>
+    
+    <script src="./js/qrCodeScanner.js"></script>
+  </body>
+</html>
