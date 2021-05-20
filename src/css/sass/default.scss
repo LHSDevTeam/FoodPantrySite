@@ -11,12 +11,15 @@ $yellow: #F9C506;
 @import "./button";
 @import "./camera";
 
+html { height: 100%; }
+
 body {
     font-family: $font-family;
     color: $blue1;
     background-color: $white;
     padding: 0;
     margin: 0;
+    height: 100%;
 }
 
 .wrapper {
@@ -34,7 +37,14 @@ body {
 }
 
 .block {
-    background-color: #c0c0c0;
+    background-color: #eee;
+    padding: 16px 31px;
+    color: $blue1;
+    border-radius: 10px;
+}
+
+.text-block {
+    background-color: #ccc;
     padding: 16px 31px;
     color: $white;
     border-radius: 10px;
