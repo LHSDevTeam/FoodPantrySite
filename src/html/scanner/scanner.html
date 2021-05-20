@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" type="text/css" href="../../css/out/index.css">
+    <head>
+        <meta charset="utf-8">
+        <title>Display Webcam Stream</title>
+ 
+        <style>
+        #container {
+            margin: 0px auto;
+            width: 500px;
+            height: 375px;
+            border-radius:8px;
+        }
+        #videoElement {
+            width: 500px;
+            height: 375px;
+            background-color: #666;
+        }
+        video{ 
+            border: 1px solid rgb(255, 255, 255);
+            padding: 20px; 
+            margin: 10px; 
+            border-radius: 20px; 
+            -moz-transition: all 1s ease-in-out; 
+            -webkit-transition: all 1s ease-in-out; 
+            -o-transition: all 1s ease-in-out; 
+            -ms-transition: all 1s ease-in-out; 
+            transition: all 1s ease-in-out;
+         }
+         video { 
+             /* background color */ 
+             background-color: #242424; 
+             /* background gradient */ 
+             background-image: linear-gradient(top, #fff, rgb(34, 34, 34)); 
+             background-image: -moz-linear-gradient(top, #fff, rgb(34, 34, 34)); 
+             background-image: -webkit-linear-gradient(top, rgb(34, 34, 34), rgb(34, 34, 34)); 
+             background-image: -o-linear-gradient(top, #fff, rgb(34, 34, 34)); 
+             background-image: -ms-linear-gradient(top, #fff, rgb(34, 34, 34));
+         }
+         
+        </style>
+    </head>
+    
+    <body>
+        <div id="container">
+            <video autoplay="true" id="videoElement">
+            
+            </video>
+        </div>
+        <script>
+            var video = document.querySelector("#videoElement");
+
+            if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                video.srcObject = stream;
+                })
+                .catch(function (err0r) {
+                console.log("Something went wrong!");
+                });
+            }
+        </script>
+    </body>
+</html>
+
