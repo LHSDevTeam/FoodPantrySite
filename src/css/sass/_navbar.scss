@@ -2,11 +2,11 @@
 /// Should be displayed on all pages, except scanner and check out
 div[id="navbar"] {
     overflow: hidden;
-    background-color: $blue1;
+    background-color: rgba(255, 255, 255, 0.5);
     a {
         float: left;
         display: block;
-        color: $white;
+        color: $blue1;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;

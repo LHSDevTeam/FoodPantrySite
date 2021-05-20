@@ -117,6 +117,23 @@ function userExists() {
 
 }
 
+interface Item {
+  id: number;
+  name: string;
+  description: string;
+  nutrition: string;
+}
+
+interface Quantity {
+  item_id: number;
+  number: number;
+}
+
+interface Transaction {
+  date: Date;
+  items: [Quantity];
+}
+
 const UserValidationSchema = Joi.object({
   fname: Joi.string().max(36).pattern(/[a-zA-Z]/).required(),
   lname: Joi.string().max(36).pattern(/[a-zA-Z]/).required(),
@@ -125,11 +142,12 @@ const UserValidationSchema = Joi.object({
 });
 
 export interface IUser extends mongoose.Document {
-  _id: mongoose.Schema.Types.ObjectId,
-  email: String,
-  fname: String,
-  lname: String,
-  hash: String
+  _id: mongoose.Schema.Types.ObjectId;
+  email: String;
+  fname: String;
+  lname: String;
+  hash: String;
+  history: [Transaction];
 }
 
 const UserSchema = new Schema({
@@ -137,7 +155,8 @@ const UserSchema = new Schema({
   email: String,
   fname: String,
   lname: String,
-  hash: String
+  hash: String,
+  history: []
 });
 
 UserSchema.pre<IUser>("save", function (next) {
@@ -185,7 +204,8 @@ function signUp(body, res, callback) {
           email: validation.value.email,
           fname: validation.value.fname,
           lname: validation.value.lname,
-          hash: validation.value.password
+          hash: validation.value.password,
+          history: []
         });
 
         newUser.save(function (err) {

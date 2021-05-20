@@ -33,6 +33,13 @@ body {
     padding-left: 10px;
 }
 
+a {
+    color: $white;
+    &:visited {
+        color: $white;
+    }
+}
+
 .center {
     text-align: center;
 }
@@ -55,5 +62,23 @@ body {
     background-color: #ccc;
     padding: 16px 31px;
     color: $white;
+    border-radius: 10px;
+}
+
+.blue-bg {
+    background-color: $blue1;
+    color: $white;
+}
+
+.bg {
+    background-image: url("../../img/hospital.bmp");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.thumbnail {
+    width: 100%;
     border-radius: 10px;
 }
