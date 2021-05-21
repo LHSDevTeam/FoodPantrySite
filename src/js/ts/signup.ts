@@ -1,4 +1,5 @@
 export {}
+
 document.getElementById("submit-btn").addEventListener("click", submit); 
 
 document.getElementById("signup-form").addEventListener("submit", handleForm);
@@ -21,7 +22,13 @@ async function submit() {
     };
     const request = await fetch("http://127.0.0.1:1337/signup", requestParams);
     const response = await request.json();
-    alert(response);
+    if (response.error) {
+        document.getElementById("alert-message").innerHTML = response.error;
+        document.getElementById("alert").style.display = "block";
+    }
+    else {
+        alert(response);
+    }
 }
 
 function handleForm(event) { 

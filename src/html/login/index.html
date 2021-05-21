@@ -23,8 +23,12 @@
                 <div class="block">
                     <div id="login-form">
                         <form class="center">
+                            <div id="alert" style="display:none">
+                                <span id="close-alert-btn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                <strong>Error:</strong> <div id="alert-message"></div>
+                            </div>
                             <h1>Login</h1>
-                            <input class="text-input" type="email" placeholder="E-Mail" id="email-field" pattern="[a-zA-Z]+" required/><br><br>
+                            <input class="text-input" type="email" placeholder="E-Mail" id="email-field" required/><br><br>
                             <input class="text-input" type="password" placeholder="Password" id="password-field" required/><br><br>
                             <input class="thin-button" type="submit" id="submit-btn" value="Submit"/>
                         </form>

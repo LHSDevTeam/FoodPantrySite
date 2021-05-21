@@ -19,10 +19,15 @@
                 <div class="clear-block">
                     <a href="/"><img src="../../img/hopkins-logo.svg"/></a>
                 </div>
+                
                 <br>
                 <div class="block">
                     <div id="signup-form">
                         <form class="center">
+                            <div id="alert" style="display:none">
+                                <span id="close-alert-btn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                <strong>Error:</strong> <div id="alert-message"></div>
+                            </div>
                             <h1>Sign Up</h1>
                             <input class="text-input" type="text" placeholder="First Name" id="fname-field" pattern="[a-zA-Z]+" required/><br><br>
                             <input class="text-input" type="text" placeholder="Last Name" id="lname-field" pattern="[a-zA-Z]+" required/><br><br>

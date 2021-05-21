@@ -86,8 +86,9 @@ function handlePOST(pathName, req, res) {
     } else {
       if (pathName == "/signup") {
         signUp(body, res, POSTcallback);
+      } else if (pathName == "/login") {
+        logIn(body, res, POSTcallback);
       }
-      
     }      
   });
 }
@@ -134,9 +135,14 @@ interface Transaction {
   items: [Quantity];
 }
 
-const UserValidationSchema = Joi.object({
+const UserSignUpValidationSchema = Joi.object({
   fname: Joi.string().max(36).pattern(/[a-zA-Z]/).required(),
   lname: Joi.string().max(36).pattern(/[a-zA-Z]/).required(),
+  email: Joi.string().max(256).email().required(),
+  password: Joi.string().max(128).required()
+});
+
+const UserLogInValidationSchema = Joi.object({
   email: Joi.string().max(256).email().required(),
   password: Joi.string().max(128).required()
 });
@@ -160,20 +166,18 @@ const UserSchema = new Schema({
 });
 
 UserSchema.pre<IUser>("save", function (next) {
-  const user = this;
-
   if (this.isModified("hash") || this.isNew) {
     bcrypt.genSalt(10, function (saltError, salt) {
       if (saltError) {
         console.error('\x1b[31m%s\x1b[0m', saltError);
         return next(saltError);
       } else {
-        bcrypt.hash(user.hash, salt, function(hashError, hash) {
+        bcrypt.hash(this.hash, salt, function(hashError, hash) {
           if (hashError) {
             console.error('\x1b[31m%s\x1b[0m', hashError);
             return next(hashError);
           }
-          user.hash = hash;
+          this.hash = hash;
           next();
         })
       }
@@ -181,20 +185,31 @@ UserSchema.pre<IUser>("save", function (next) {
   } else {
     return next();
   }
-})
+});
+
+UserSchema.methods.comparePassword = function(password, callback) {
+  bcrypt.compare(password, (this as IUser).hash, function(err, isMatch) {
+    if (err) {
+      return callback(err);
+    } else {
+      callback(null, isMatch);
+    }
+  });
+}
 
 var User = mongoose.model('Users', UserSchema);
 
 // Firsts validates sign up info and then creates a new account
 function signUp(body, res, callback) {
-  let validation = UserValidationSchema.validate(body);
+  let validation = UserSignUpValidationSchema.validate(body);
   if (validation.error) {
     console.error('\x1b[31m%s\x1b[0m', validation);
-    callback(res, validation);
+    let error = { error: "Form Sent is Invalid, Reload or Contact Your Adminstrator" };
+    callback(res, error);
   } else {
-    User.countDocuments({username: validation.value.fname.toLowerCase() + validation.value.lname.toLowerCase()}, function (err, count){
+    User.countDocuments({email: validation.value.email}, function (err, count){
       if (err) {
-        let error = { error: err };
+        let error = { error: "Could Not Check Database, Reload or Contact Your Administrator" };
         console.error('\x1b[31m%s\x1b[0m', error);
         callback(res, error);
       }
@@ -210,7 +225,7 @@ function signUp(body, res, callback) {
 
         newUser.save(function (err) {
           if (err) {
-            let error = { error: err };
+            let error = { error: "Could Not Save New User, Reload or Contact Administrator" };
             console.error('\x1b[31m%s\x1b[0m', error);
             callback(res, error);
           }
@@ -221,6 +236,42 @@ function signUp(body, res, callback) {
         let error = {error: "Username Already Exists"}
         console.error('\x1b[31m%s\x1b[0m', error);
         callback(res, error);
+      }
+    });
+  }
+}
+
+function logIn(body, res, callback) {
+  let validation = UserLogInValidationSchema.validate(body);
+  if (validation.error) {
+    console.error('\x1b[31m%s\x1b[0m', validation);
+    let error = { error: "Form Sent is Invalid, Reload or Contact Your Adminstrator" };
+    callback(res, error);
+  } else {
+    User.findOne({email: validation.value.email}, function(err, user) {
+      if (err) {
+        let error = {error: "Could Not Search For User"}
+        console.error('\x1b[31m%s\x1b[0m', error);
+        callback(res, error);
+      } else if (!user) {
+        let error = {error: "Could Not Find User"}
+        console.error('\x1b[31m%s\x1b[0m', error);
+        callback(res, error);
+      } else {
+        user.comparePassword(validation.value.password, function(matchError, isMatch) {
+          if (matchError) {
+            let error = {error: "Could Not Confirm Password Matches"}
+            console.error('\x1b[31m%s\x1b[0m', error);
+            callback(res, error)
+          } else if (!isMatch) {
+            let error = {error: "Incorrect Password"}
+            console.error('\x1b[31m%s\x1b[0m', error);
+            callback(res, error)
+          } else {
+            console.trace("Logged In User: " + validation.value.email);
+            callback(res, "Log In Successful")
+          }
+        });
       }
     });
   }
