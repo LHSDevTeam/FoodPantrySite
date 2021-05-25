@@ -17,7 +17,7 @@
     "test": "call ./build.bat && call ./test.bat",
     "build": "call ./build.bat",
     "app": "call ./build.bat && node ./src/js/out/main.js",
-    "sass" : "sass ./src/css/sass/:./src/css/out/ --style=compressed"
+    "sass": "sass ./src/css/sass/:./src/css/out/ --style=compressed"
   },
   "repository": {
     "type": "git",
