@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 })
 
-app.use("/img", express.static("img"));
+app.use("/img", express.static(path.join(__dirname, "img")));
 app.use("/css", express.static(path.join(__dirname, "css/out")));
 
 app.listen(port, () => {
